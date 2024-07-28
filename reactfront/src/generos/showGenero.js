@@ -1,19 +1,19 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const URI = 'http://localhost:8000/generosMusica/'
 
 
-const CompShowGenero = () =>{
+const CompShowGenero = () => {
     const [generos, setGenero] = useState([])
-    useEffect(() =>{
+    useEffect(() => {
         getGeneros()
-    },[])
+    }, [])
 
     //procedimiento para mostrar todos os blogs
-    const getGeneros = async () =>{
+    const getGeneros = async () => {
         const res = await axios.get(URI)
         setGenero(res.data)
 
@@ -21,13 +21,13 @@ const CompShowGenero = () =>{
 
     //procedimiento para eliminar
 
-    const deleteGenero = async (id) =>{
-        axios.delete(`${URI}${id}`)
+    const deleteGenero = async (id) => {
+        await axios.delete(`${URI}${id}`)
         getGeneros()
 
     }
 
-    return(
+    return (
         <div className='container'>
             <div className='row'>
                 <div className='col'>
@@ -40,18 +40,18 @@ const CompShowGenero = () =>{
                             </tr>
                         </thead>
                         <tbody>
-                            {generos.map((genero) =>(
+                            {generos.map((genero) => (
                                 <tr key={genero.id}>
-                                    <td>{ genero.tipo_Gnero_Cancion }</td>
+                                    <td>{genero.tipo_Gnero_Cancion}</td>
                                     <td>
-                                       <Link to={`/edit/${genero.id}`} className='btn btn-info'><i className="fa-solid fa-pencil"> </i></Link>
-                                        <button onClick={()=>deleteGenero(genero.id)} className='btn btn-danger'><i className="fa-solid fa-trash-can"> </i></button>
+                                        <Link to={`/edit/${genero.id}`} className='btn btn-info'><i className="fa-solid fa-pencil"> </i></Link>
+                                        <button onClick={() => deleteGenero(genero.id)} className='btn btn-danger'><i className="fa-solid fa-trash-can"> </i></button>
                                     </td>
 
                                 </tr>
                             )
 
-                             )}
+                            )}
 
                         </tbody>
 

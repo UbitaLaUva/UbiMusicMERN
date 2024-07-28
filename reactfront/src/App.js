@@ -3,6 +3,10 @@ import './App.css';
 
 //importamos componentes 
 import CompShowGenero from './generos/showGenero';
+import CompCreateGenero from './generos/createGenero';
+import CompEditGenero from './generos/editGenero';
+
+//importamos los router
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 
@@ -15,6 +19,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<CompShowGenero />}/>
+          <Route path='/create' element={<CompCreateGenero />}/>
+          <Route path='/edit/:id' element={<CompEditGenero />}/>
         </Routes>
       </BrowserRouter>
       
